@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `course` (
   `courseName` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `courseId` int(11) DEFAULT NULL,
   `courseLatitude` double DEFAULT NULL,
-  `courseLongitude` double DEFAULT NULL,
+  `courseLatitude` double DEFAULT NULL,
   `distanceFromMeKilometers` double DEFAULT NULL,
   `distanceFromMeMiles` double DEFAULT NULL,
   `website` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
