@@ -6,13 +6,13 @@
 <?php
 set_time_limit(0);
 //database connection parameters
+$databaseAddress = "localhost";
 $username = "root";
 $password = "";
 $database = "zelusitc_GolfCourses";
 $table = "course";
 
-$file = "1-9999.csv";
-$row = 1;
+$file = "10500-11999.csv";
 
 //place this before any script you want to calculate time
 $time_start = microtime(true); 
@@ -21,13 +21,14 @@ $counter = 0;
 if (($handle = fopen($file, "r")) !== FALSE) {
   while (($data = fgetcsv($handle, 0, ",")) !== FALSE) { //fgetcsv(file,line length,separator,enclosure) 
 	 
-	if($counter % 200 == 0){
+	if($counter % 100 == 0){
 		echo "Lines number " . $counter . "<br>";
 		ob_flush();
         flush();
 	}
+	
   //Connect to MySql database
-		$mysqli = new mysqli("localhost", $username, $password, $database);
+		$mysqli = new mysqli($databaseAddress, $username, $password, $database);
 
 		/* check connection */
 		if (mysqli_connect_errno()) {
@@ -124,11 +125,12 @@ if (($handle = fopen($file, "r")) !== FALSE) {
 		}
 		$counter++;		
     }// for loop
+	
 	/* close connection */
 	$mysqli->close();
   }
   fclose($handle);
-  echo "FINISHED";
+  echo "Final Lines number " . $counter . "<br>";
 }
 
 $time_end = microtime(true);
